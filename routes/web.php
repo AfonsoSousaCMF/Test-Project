@@ -17,8 +17,12 @@ use App\Http\Controllers\PostsController;
 */
 
 Route::get('/', 'PostsController@index')->name('posts');
-Route::get('/posts', 'PostsController@create')->name('posts-create');
-Route::get('/posts/{id}', 'UserController@show')->name('posts-show');
+Route::get('/posts/{id}', 'PostsController@show')->name('posts-show');
+
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::get('/posts', 'PostsController@create')->name('posts-create');
+Route::get('/edit/{id}', 'PostsController@edit')->name('posts-edit');
+Route::post('/posts/store', 'PostsController@store')->name('posts-store');
+Route::patch('/posts/udpate/{id}', 'PostsController@update')->name('posts-update');

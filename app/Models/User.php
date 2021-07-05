@@ -47,6 +47,8 @@ class User extends Authenticatable
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    protected $guarded = [];
+
     public function posts()
     {
         return $this->hasMany(Post::class);

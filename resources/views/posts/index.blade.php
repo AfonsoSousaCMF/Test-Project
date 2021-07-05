@@ -5,11 +5,6 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">{{ __('Posts') }}
-                        <a href="{{ route('posts-create') }}" class="btn btn-outline-primary" type="button">
-                            Create Post
-                        </a>
-                    </div>
 
                     {{-- Message Section --}}
                     @if (session('status'))
@@ -36,12 +31,12 @@
                                     @if ($post->image != null)
                                         <!-- Preview Image -->
                                         <a href="{{ route('posts-show', $post->id) }}" >
-                                        <img class="card-img-top" src="{{ $post->image }}" alt="">
+                                            <img class="card-img-top" src="{{ $post->image }}" alt="">
                                         </a>
                                     @else
                                         <!-- Preview Image -->
                                         <a href="{{ route('posts-show', $post->id) }}" >
-                                        <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+                                            <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
                                         </a>
                                     @endif
                                     
@@ -78,11 +73,17 @@
                         
                                     <div class="card-footer text-muted">
                                         Posted on {{ $post->created_at->format('d/m/Y') }} by
-                                        <strong>{{ $post->owner->name }}</strong> 
+                                        <strong>{{ $post->author }}</strong> 
                                     </div>
                                 </div>
                             @endforeach
-                    
+                                
+                            <!-- Pagination -->
+                            <ul class="pagination justify-content-center mb-4">
+                                <li class="page-item">
+                                    {!! $posts->links() !!}
+                                </li>
+                            </ul>
                             {{-- @else --}}
                           
 
