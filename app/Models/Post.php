@@ -14,6 +14,8 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
+    protected $guarded = [];
+
     public function author()
     {
         return $this->belongsTo(User::class);

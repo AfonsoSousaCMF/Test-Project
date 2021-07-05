@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->text('content');
-            $table->text('image');
+            $table->text('image')->nullable();
             $table->unsignedBigInteger('author');
             $table->timestamps();
             $table->foreign('author')->references('id')->on('users');
