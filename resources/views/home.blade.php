@@ -86,14 +86,9 @@
                             </div>
                           @endif
                   
-                          <!-- Pagination -->
-                          <ul class="pagination justify-content-center mb-4">
-                            <li class="page-item">
-                              {!! $posts->links() !!}
-                            </li>
-                          </ul>
-                  
+                          @include('layouts.pagination')
                         </div>
+                    </div>
                 </div>
             </div>
         </div>

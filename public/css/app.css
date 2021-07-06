@@ -4584,7 +4584,8 @@ input[type=button].btn-block {
   color: #6c757d;
 }
 
-.pagination {
+.pagination{
+  display: -webkit-box;
   display: flex;
   padding-left: 0;
   list-style: none;

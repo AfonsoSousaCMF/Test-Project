@@ -19,7 +19,7 @@
                     </h1>
                 </div>
 
-                <div class="col-md-8 mt-4 mb-3 mx-auto">
+                <div class="col-md-10 mt-4 mb-3 mx-auto">
                     @if ($posts->count() > 0)
                     
                         {{-- @if (isset($details)) --}}
@@ -82,12 +82,7 @@
                             </div>
                         @endforeach
                             
-                        <!-- Pagination -->
-                        <ul class="pagination justify-content-center mb-4">
-                            <li class="page-item">
-                                {!! $posts->links() !!}
-                            </li>
-                        </ul>
+                       
                         {{-- @else --}}
                         
 
@@ -150,6 +145,8 @@
                         </div>
                     @endif    
                 </div>
+
+               @include('layouts.pagination')
             </div>
         </div>
     </div>
