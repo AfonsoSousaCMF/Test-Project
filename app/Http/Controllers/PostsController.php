@@ -28,18 +28,6 @@ class PostsController extends Controller
     }
 
     /**
-     * Display a listing of the owned Posts.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function showOwnPosts()
-    {
-        // $posts = Post::where('author', auth()->id())->latest('created_at')->paginate(3); 
-
-        // return view('posts.showOwnposts', ['posts' => $posts]);
-    }
-
-    /**
      * Function for a simple search.
      *
      * @return \Illuminate\Http\Response
@@ -65,7 +53,7 @@ class PostsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         // $this -> authorize('create', $post);
 
@@ -75,7 +63,7 @@ class PostsController extends Controller
             // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        $validated['author'] = auth()->id();
+        $validated['author_id'] = auth()->id();
 
         // // Get image file
         // $image = $request->file('image');
@@ -94,7 +82,7 @@ class PostsController extends Controller
         $post = Post::create($validated);
         
         // redirect to the posts page
-        return redirect('/')->with(['status' => 'Post successfully created!']);
+        return redirect('/home')->with(['status' => 'Post successfully created!']);
     }
 
     /**
@@ -118,7 +106,9 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        
+        return view('posts.edit', compact('post'));
     }
 
     /**
@@ -128,9 +118,34 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Post $post, $id)
     {
-        //
+        // $this -> authorize('create', $post);
+
+        $validated = request()->validate([
+            'title' => ['required', 'min:1', 'max:255'],
+            'content' => ['required', 'min:10', 'max:1000']
+            // 'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        // // Get image file
+        // $image = $request->file('image');
+        // // Make a image name based on user name and current timestamp
+        // $name = Str::slug($request->input('title')).'_'.time();
+        // // Define folder path
+        // $folder = '/uploads/images/';
+        // // Make a file path where image will be stored [ folder path + file name + file extension]
+        // $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+        // // Upload image
+        // $this->uploadOne($image, $folder, 'public', $name);
+        // // Set user profile image path in database to filePath
+        
+        // $validated['image'] = $filePath;
+        $post = Post::findOrFail($id);
+        $post->update($validated);
+        
+        // redirect to the posts page
+        return redirect('/home')->with(['status' => 'Post successfully updated!']);
     }
 
     /**
@@ -141,6 +156,12 @@ class PostsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+
+        // $this -> authorize('update', $post);
+
+        $post->delete();
+        
+        return redirect('/home')->with(['status' => 'Post successfully deleted!']);
     }
 }
