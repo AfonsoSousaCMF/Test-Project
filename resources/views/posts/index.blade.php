@@ -4,13 +4,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                {{-- Message Section --}}
-                @if (session('status'))
-                    <div class="alert alert-success" role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
+                {{-- Alert Handler --}}
+                @include('layouts.alerts')
 
+                {{-- Error Handler --}}
                 @include('layouts.errors')
                    
                 <div class="row">
@@ -19,8 +16,16 @@
                     </h1>
                 </div>
 
+                <div class="row mt-3">
+                    <div class="col-md-12">
+                        {{-- Pagination Layout --}}
+                        @include('layouts.pagination')
+                    </div>
+                </div>
+
                 <div class="col-md-10 mt-4 mb-3 mx-auto">
                     @if ($posts->count() > 0)
+
                     
                         {{-- @if (isset($details)) --}}
                 
@@ -53,26 +58,26 @@
                                     {{ $post->content }}
                                     </p>
                     
-                                    {{-- @auth
+                                    @auth
                                         @if (auth()->user()->isAdmin == 1)
                                             @can('update', $post)
-                                            <br><br>
-                                            <div class="row">
-                                                <div class="col-lg-1">
-                                                    <a href="{{ route('posts-edit', $post->id) }}" class="btn btn-success">Edit</a>
+                                                <br><br>
+                                                <div class="row">
+                                                    <div class="col-lg-4 mr-2">
+                                                        <a href="{{ route('posts-edit', $post->id) }}" class="btn btn-success">Edit</a>
+                                                    </div>
+                            
+                                                    <div class="col-lg-8">
+                                                        <form method="POST" action="{{ route('posts-delete', $post->id) }}">
+                                                            @method('DELETE')
+                                                            @csrf
+                                                            <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">Delete</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                        
-                                                <div class="col-lg-11">
-                                                <form method="POST" action="{{ route('posts-delete', $post->id) }}">
-                                                    @method('DELETE')
-                                                    @csrf
-                                                    <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">Delete</button>
-                                                </form>
-                                                </div>
-                                            </div>
                                             @endcan
                                         @endif
-                                    @endauth --}}
+                                    @endauth
                                 </div>
                     
                                 <div class="card-footer text-muted">
@@ -82,10 +87,8 @@
                             </div>
                         @endforeach
                             
-                       
                         {{-- @else --}}
                         
-
                         {{-- @foreach ($posts as $post)
                             <div class="card mb-4">
                             
@@ -145,8 +148,9 @@
                         </div>
                     @endif    
                 </div>
-
-               @include('layouts.pagination')
+                
+                {{-- Pagination Layout --}}
+                @include('layouts.pagination')
             </div>
         </div>
     </div>

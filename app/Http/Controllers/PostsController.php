@@ -55,7 +55,6 @@ class PostsController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-        // $this -> authorize('create', $post);
 
         $validated = request()->validate([
             'title' => ['required', 'min:1', 'max:255'],
@@ -120,7 +119,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post, $id)
     {
-        // $this -> authorize('create', $post);
+        $this -> authorize('update', $post);
 
         $validated = request()->validate([
             'title' => ['required', 'min:1', 'max:255'],
@@ -141,7 +140,7 @@ class PostsController extends Controller
         // // Set user profile image path in database to filePath
         
         // $validated['image'] = $filePath;
-        $post = Post::findOrFail($id);
+        
         $post->update($validated);
         
         // redirect to the posts page
@@ -158,7 +157,7 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
 
-        // $this -> authorize('update', $post);
+        $this -> authorize('update', $post);
 
         $post->delete();
         
