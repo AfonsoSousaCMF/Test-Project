@@ -119,6 +119,7 @@ class PostsController extends Controller
      */
     public function update(Request $request, Post $post, $id)
     {
+        $post = Post::findOrFail($id);
         $this -> authorize('update', $post);
 
         $validated = request()->validate([
@@ -140,6 +141,7 @@ class PostsController extends Controller
         // // Set user profile image path in database to filePath
         
         // $validated['image'] = $filePath;
+        
         
         $post->update($validated);
         

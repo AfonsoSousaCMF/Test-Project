@@ -26,10 +26,13 @@
                     </div>
 
                     <div class="card-body">
-                        <div class="row">
-                            {{-- Pagination Layout --}}
-                            @include('layouts.pagination')
+                        <div class="row mt-3">
+                            <div class="col-md-12">
+                                {{-- Pagination Layout --}}
+                                @include('layouts.pagination')
+                            </div>
                         </div>
+
                         <div class="row">
                             <!-- Blog Entries Column -->
                             <div class="col-md-10 justify-content-center mx-auto">
@@ -60,11 +63,11 @@
                                                 @auth
                                                     @can('update', $post)
                                                         <div class="row">
-                                                            <div class="col-lg-2">
+                                                            <div class="col-lg-2 mr-1">
                                                                 <a href="{{ route('posts-edit', $post->id) }}" class="btn btn-success">Edit</a>
                                                             </div>
                                                             
-                                                            <div class="col-lg-10">
+                                                            <div class="col-lg-8">
                                                                 <form method="POST" action="{{ route('posts-delete', $post->id) }}">
                                                                     @method('DELETE')
                                                                     @csrf
