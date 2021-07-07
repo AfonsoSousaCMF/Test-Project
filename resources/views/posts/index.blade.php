@@ -51,11 +51,11 @@
                                 
                                 <div class="card-body">
                                     <h2 class="card-title">
-                                    {{ $post->title }}
+                                        {{ $post->title }}
                                     </h2>
                     
                                     <p class="card-text text-truncate desc">
-                                    {{ $post->content }}
+                                        {{ $post->content }}
                                     </p>
                     
                                     @auth
