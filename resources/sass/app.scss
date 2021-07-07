@@ -6,3 +6,49 @@
 
 // Bootstrap
 @import "~bootstrap/scss/bootstrap";
+
+body {
+    overflow-x: hidden;
+}
+
+.alert {
+    position: absolute;
+    margin-bottom: 1rem;
+    margin-right: 10px;
+    border: 1px solid transparent;
+    border-radius: 0.25rem;
+    border-left: 8px solid #02ff39;
+    top: 5;
+    right: 0;
+    z-index: 2;
+    overflow: hidden;
+    animation: hide_slide 1s ease forwards;
+    animation-delay: 2s;
+  }
+
+.alert-dismissible .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 0.75rem 1.25rem;
+    color: inherit;
+}
+
+@keyframes show_slide {
+    0% {
+        transform: translateX(150%);
+    }
+    100% {
+        transform: translateX(0px);
+    }
+}
+
+@keyframes hide_slide {
+    0% {
+        transform: translateX(0px);
+    }
+    100% {
+        transform: translateX(150%);
+    }
+}

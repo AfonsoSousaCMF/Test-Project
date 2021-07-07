@@ -11,7 +11,7 @@ use App\Models\User;
 class PostsController extends Controller
 {
     use UploadTrait;
-    
+
     // middleware for authentication
     public function __construct()
     {
@@ -63,24 +63,26 @@ class PostsController extends Controller
         $validated = request()->validate([
             'title' => ['required', 'min:1', 'max:255'],
             'content' => ['required', 'min:10', 'max:1000'],
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $validated['author_id'] = auth()->id();
 
-        // Get image file
-        $image = $request->file('image');
-        // Make a image name based on user name and current timestamp
-        $name = Str::slug($request->input('title')).'_'.time();
-        // Define folder path
-        $folder = '/uploads/images/';
-        // Make a file path where image will be stored [ folder path + file name + file extension]
-        $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-        // Upload image
-        $this->uploadOne($image, $folder, 'public', $name);
-        // Set user profile image path in database to filePath
-        
-        $validated['image'] = $filePath;
+        if ($request->has('image')) {
+            // Get image file
+            $image = $request->file('image');
+            // Make a image name based on user name and current timestamp
+            $name = Str::slug($request->input('title')).'_'.time();
+            // Define folder path
+            $folder = '/uploads/images/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+            // Set user profile image path in database to filePath
+            
+            $validated['image'] = $filePath;
+        }
 
         $post = Post::create($validated);
         
@@ -129,21 +131,23 @@ class PostsController extends Controller
         $validated = request()->validate([
             'title' => ['required', 'min:1', 'max:255'],
             'content' => ['required', 'min:10', 'max:1000'],
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
-        // Get image file
-        $image = $request->file('image');
-        // Make a image name based on user name and current timestamp
-        $name = Str::slug($request->input('title')).'_'.time();
-        // Define folder path
-        $folder = '/uploads/images/';
-        // Make a file path where image will be stored [ folder path + file name + file extension]
-        $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-        // Upload image
-        $this->uploadOne($image, $folder, 'public', $name);
-        // Set image path in database to filePath
-        $validated['image'] = $filePath;
+        if ($request->has('image')) {
+            // Get image file
+            $image = $request->file('image');
+            // Make a image name based on user name and current timestamp
+            $name = Str::slug($request->input('title')).'_'.time();
+            // Define folder path
+            $folder = '/uploads/images/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+            // Set image path in database to filePath
+            $validated['image'] = $filePath;
+        }
         
         $post->update($validated);
         
@@ -165,6 +169,6 @@ class PostsController extends Controller
 
         $post->delete();
         
-        return redirect('/home')->with(['status' => 'Post successfully deleted!']);
+        return back()->with(['status' => 'Post successfully deleted!']);
     }
 }

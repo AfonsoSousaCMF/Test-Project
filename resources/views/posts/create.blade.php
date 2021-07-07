@@ -5,7 +5,10 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card-header mb-3">{{ __('Posts') }}</div>
+                <!-- Page Heading -->
+                <h1 class="mt-4 mb-3">
+                    Create Post
+                </h1>
 
                 @include('layouts.errors')
 
@@ -32,7 +35,7 @@
                                 </div>
                             </div>
                             
-                            <a href="{{ route('posts') }}" class="btn btn-primary mt-3">Back to Posts</a>
+                            <a href="{{ route('home') }}" class="btn btn-primary mt-3">Back to your Posts</a>
                             <button type="reset" class="btn btn-danger mt-3" onclick="return confirm('Are you sure you want to erase everything?');">Clear</button>
                             <button type="submit" class="btn btn-success mt-3" onclick="return confirm('Are you sure you want to submit the Post?');">Submit Post</button>
                         </form>

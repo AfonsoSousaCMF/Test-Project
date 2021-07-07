@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Alert Handler --}}
+    @include('layouts.alerts')
+
+    {{-- Error Handler --}}
+    @include('layouts.errors')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="">
-                    {{-- Alert Handler --}}
-                    @include('layouts.alerts')
-
-                    {{-- Error Handler --}}
-                    @include('layouts.errors')
-
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <!-- Page Content -->
+   <!-- Page Content -->
   <div class="container mb-5">
 
    <!-- Page Heading -->
@@ -42,9 +42,9 @@
                <img class="img-fluid rounded" src="{{ $post->image }}" width="300" height="auto">
                <br>
             @else
-                <!-- Preview Image -->
-                <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-                <br>
+               <!-- Preview Image -->
+               <img class="img-fluid rounded" src="http://placehold.it/750x300" width="300"  alt="Card image cap">
+               <br>
             @endif
             
             <a href="{{ route('home') }}" class="btn btn-primary mt-3">Back to your Posts</a>

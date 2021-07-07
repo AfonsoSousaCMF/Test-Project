@@ -1,15 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Alert Handler --}}
+    @include('layouts.alerts')
+
+    {{-- Error Handler --}}
+    @include('layouts.errors')
+
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                {{-- Alert Handler --}}
-                @include('layouts.alerts')
-
-                {{-- Error Handler --}}
-                @include('layouts.errors')
-                   
                 <div class="row">
                     <h1 class="col-md-7 ml-auto">
                         Posts
@@ -63,7 +63,7 @@
                                             @can('update', $post)
                                                 <br><br>
                                                 <div class="row">
-                                                    <div class="col-lg-4 mr-2">
+                                                    <div class="col-lg-2">
                                                         <a href="{{ route('posts-edit', $post->id) }}" class="btn btn-success">Edit</a>
                                                     </div>
                             
