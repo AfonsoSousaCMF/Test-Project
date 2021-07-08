@@ -19,6 +19,10 @@ use App\Http\Controllers\PostsController;
 Route::get('/', 'PostsController@index')->name('posts');
 Route::get('/posts/{id}', 'PostsController@show')->name('posts-show');
 
+Route::get('/image-gallery', 'ImageGalleryController@index')->name('gallery-index');
+Route::post('/image-gallery', 'ImageGalleryController@upload')->name('gallery-upload');
+Route::delete('/image-gallery/{id}', 'ImageGalleryController@destroy')->name('gallery-delete');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

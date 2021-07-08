@@ -12,12 +12,11 @@ body {
 }
 
 .alert {
-    position: absolute;
+    position: fixed;
     margin-bottom: 1rem;
     margin-right: 10px;
     border: 1px solid transparent;
     border-radius: 0.25rem;
-    border-left: 8px solid #02ff39;
     top: 5;
     right: 0;
     z-index: 2;
@@ -27,12 +26,19 @@ body {
   }
 
 .alert-dismissible .close {
-    position: absolute;
+    position: fixed;
     top: 0;
     right: 0;
     z-index: 2;
     padding: 0.75rem 1.25rem;
     color: inherit;
+}
+
+.alert-success {
+    color: #1d643b;
+    background-color: #d7f3e3;
+    border-color: #c7eed8;
+    border-left: 8px solid #02ff39;
 }
 
 @keyframes show_slide {
@@ -51,4 +57,45 @@ body {
     100% {
         transform: translateX(150%);
     }
+}
+
+.close-icon {
+    border-radius: 50%;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+    padding: 5px 8px;
+}
+.form-image-upload {
+    background: #e8e8e8 none repeat scroll 0 0;
+    padding: 15px;
+}
+
+.carousel {
+    position: relative;
+    border-radius: 5px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 15%;
+  color: #fff;
+  text-align: center;
+  opacity: 0.1;
+  transition: opacity 0.15s ease;
+}
+.carousel-control-prev:hover, .carousel-control-prev:focus,
+.carousel-control-next:hover,
+.carousel-control-next:focus {
+  color: #fff;
+  text-decoration: none;
+  outline: 0;
+  opacity: 0.4;
 }

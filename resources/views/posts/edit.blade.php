@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+   @include('layouts.errors')
+   
    <!-- Page Content -->
   <div class="container mb-5">
 
@@ -8,8 +11,6 @@
    <h1 class="mt-4 mb-3">
       Update Post
    </h1>
-
-   @include('layouts.errors')
 
    <div class="row">
    <!-- Post Form -->

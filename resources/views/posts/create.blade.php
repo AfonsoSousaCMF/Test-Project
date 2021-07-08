@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @include('layouts.errors')
+    
     <!-- Page Content -->
     <div class="container">
         <div class="row justify-content-center">
@@ -9,8 +12,6 @@
                 <h1 class="mt-4 mb-3">
                     Create Post
                 </h1>
-
-                @include('layouts.errors')
 
                 <div class="row">
                     <!-- Posts Form -->
@@ -23,6 +24,7 @@
                                     <input type="text" class="form-control" name="title" placeholder="Title" required>
                                 </div>
                             </div>
+                           
                             <div class="form-group">
                                 <label for="inputContent">Content</label>
                                 <textarea name="content" class="form-control" cols="5" rows="10" id="textarea" required></textarea>

@@ -43,6 +43,12 @@
                             <a class="nav-link" href="{{ route('posts') }}">{{ __('Home') }}</a>
                         </li>
 
+                        <!-- Gallery Page link -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('gallery-index') }}">{{ __('Gallery') }}</a>
+                        </li>
+
+
                         <!-- Authentication Links -->
                         @guest
                             @if (Route::has('login'))
