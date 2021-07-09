@@ -43,7 +43,7 @@ class PostsController extends Controller
         ]);
 
         $search = request('search');
-        
+
         if($search != "") {
             $posts = Post::where("title", 'LIKE', '%' .$search. '%')->paginate(3);
             
@@ -53,16 +53,6 @@ class PostsController extends Controller
                 return view('posts.index', [ 'posts' => $posts])->withDetails($posts)->withQuery($search);
             }
         }
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('posts.create');
     }
 
     /**
@@ -101,7 +91,7 @@ class PostsController extends Controller
         $post = Post::create($validated);
         
         // redirect to the posts page
-        return redirect('/home')->with(['status' => 'Post successfully created!']);
+        return back()->with(['status' => 'Post successfully created!']);
     }
 
     /**

@@ -144,7 +144,6 @@
                             </div>
                         @endforeach 
                     @endif
-                    
                 </div>
                 
                 {{-- Pagination Layout --}}

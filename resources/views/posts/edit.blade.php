@@ -13,7 +13,7 @@
    </h1>
 
    <div class="row">
-   <!-- Post Form -->
+      <!-- Post Form -->
       <div class="col-md-12">
          <form action="{{ route('posts-update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -52,13 +52,6 @@
             <button type="submit" class="btn btn-success mt-3" onclick="return confirm('Are you sure you want to update the Post?');">Update Post</button>
          </form>
       </div>
-      
-
-      </div>
-
-    </div>
-    <!-- /.row -->
-
-  </div>
-  <!-- /.container -->
+   </div> <!-- /.row -->
+  </div> <!-- /.container -->
 @endsection

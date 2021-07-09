@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Modal Create Post --}}
+    @include('posts.create')
+
     {{-- Alert Handler --}}
     @include('layouts.alerts')
 
@@ -18,7 +21,7 @@
                             </div>
                             
                             <div class="col-md-4 mr-0">
-                                <a href="{{ route('posts-create') }}" class="btn btn-outline-primary" type="button">
+                                <a href="" class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#myModal">
                                     Create Post
                                 </a>    
                             </div>
