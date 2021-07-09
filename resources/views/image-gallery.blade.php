@@ -45,12 +45,14 @@
                             <div class="carousel-caption d-none d-md-block">
                                 <h5>{{ $firstImage->title }}</h5>
                             </div>
-                            <form action="{{ route('gallery-delete',$firstImage->id) }}" method="POST">
+                            {{-- <form action="{{ route('gallery-delete',$firstImage->id) }}" method="POST">
                                 <input type="hidden" name="_method" value="delete">
                                 @method('DELETE')
                                 @csrf
-                                <button type="submit" class="close-icon btn btn-danger" onclick="return confirm('Are you sure you want to delete the Image?');"><i class="glyphicon glyphicon-remove"></i></button>
-                            </form>
+                                <button type="submit" class="close-icon btn btn-danger mx-auto" onclick="return confirm('Are you sure you want to delete the Image?');">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </form> --}}
                         </div>
                         
                         @foreach($images as $image)
@@ -63,13 +65,16 @@
                                 />
                                 <div class="carousel-caption d-none d-md-block">
                                     <h5>{{ $image->title }}</h5>
+                                    <form action="{{ route('gallery-delete',$image->id) }}" method="POST">
+                                        <input type="hidden" name="_method" value="delete">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button type="submit" class="close-icon btn btn-danger mx-auto" onclick="return confirm('Are you sure you want to delete the Image?');">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </form>
                                 </div>
-                                <form action="{{ route('gallery-delete',$image->id) }}" method="POST">
-                                    <input type="hidden" name="_method" value="delete">
-                                    @method('DELETE')
-                                    @csrf
-                                    <button type="submit" class="close-icon btn btn-danger" onclick="return confirm('Are you sure you want to delete the Image?');"><i class="glyphicon glyphicon-remove"></i></button>
-                                </form>
+                               
                             </div>
                         @endforeach
                         <!-- Controls -->

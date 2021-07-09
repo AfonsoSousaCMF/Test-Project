@@ -10073,10 +10073,7 @@ body {
 }
 .close-icon {
   border-radius: 50%;
-  position: absolute;
-  right: 5px;
-  top: -10px;
-  padding: 5px 8px;
+  z-index: 8;
 }
 
 .form-image-upload {
