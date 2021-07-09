@@ -9,7 +9,12 @@
 
     <div class="container my-3">
 
-        <h3 class="mb-3">Laravel - Image Gallery CRUD Example</h3>
+        <div class="row">
+            <h1 class="col-md-7 mt-2 mb-5 ml-auto">
+                Gallery
+            </h1>
+        </div>
+
         <form action="{{ route('gallery-upload') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
             @csrf
 

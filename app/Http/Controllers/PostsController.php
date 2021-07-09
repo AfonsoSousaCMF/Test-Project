@@ -36,9 +36,23 @@ class PostsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function search()
+    public function search(Request $request)
     {
-        //
+        $request->validate([
+            'search' => 'required|min:3'
+        ]);
+
+        $search = request('search');
+        
+        if($search != "") {
+            $posts = Post::where("title", 'LIKE', '%' .$search. '%')->paginate(3);
+            
+            if(count($posts) > 0) {
+                return view('posts.index', [ 'posts' => $posts])->withDetails($posts)->withQuery($search);
+            }else{
+                return view('posts.index', [ 'posts' => $posts])->withDetails($posts)->withQuery($search);
+            }
+        }
     }
 
     /**

@@ -27,6 +27,7 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/posts', 'PostsController@create')->name('posts-create');
+Route::get('/search', 'PostsController@search')->name('posts-search');
 Route::get('/edit/{id}', 'PostsController@edit')->name('posts-edit');
 Route::post('/posts/store', 'PostsController@store')->name('posts-store');
 Route::patch('/posts/update/{id}', 'PostsController@update')->name('posts-update');
