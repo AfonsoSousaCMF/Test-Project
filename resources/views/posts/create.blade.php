@@ -2,7 +2,7 @@
 @include('layouts.errors')
 
 <!-- Modal -->
-<div class="modal fade" role="dialog" id="myModal">
+<div class="modal fade" role="dialog" id="CreateModal" aria-labelledby="CreateModal" aria-hidden="true">
     <!-- Modal Dialog-->
     <div class="modal-dialog">
         <!-- Modal Content-->
@@ -12,13 +12,16 @@
                 <h1 class="modal-title">
                     Create Post
                 </h1>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
 
             <!-- Modal Body -->
             <div class="modal-body">
                 <div class="row justify-content-center">
-                    <!-- Posts Form -->
                     <div class="col-md-12">
+                        <!-- Posts Form -->
                         <form action="{{ route('posts-store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="form-row">
@@ -46,13 +49,10 @@
                                 <button type="reset" class="btn btn-danger" onclick="return confirm('Are you sure you want to erase everything?');">Clear</button>
                                 <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to submit the Post?');">Submit Post</button>
                             </div> <!-- Modal Footer -->
-                        </form>
-                    </div> <!-- End Posts Form -->
+                        </form> <!-- End Posts Form -->
+                    </div> 
                 </div> <!-- /.row -->
-            </div>
-
-            
-
+            </div> <!-- End Modal Body-->
         </div> <!-- End Modal Content-->
     </div> <!-- End Modal Dialog-->
 </div> <!-- End Modal -->

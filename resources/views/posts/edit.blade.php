@@ -17,7 +17,7 @@
       <div class="col-md-12">
          <form action="{{ route('posts-update', $post->id) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            {{ method_field('PATCH') }}
+            @method('PATCH')
 
             <div class="form-row">
               <div class="form-group col-md-12">
