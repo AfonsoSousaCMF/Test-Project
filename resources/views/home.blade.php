@@ -21,7 +21,7 @@
                             </div>
                             
                             <div class="col-md-4 mr-0">
-                                <a href="" class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#myModal">
+                                <a href="" class="btn btn-outline-primary" type="button" data-toggle="modal" data-target="#CreateModal">
                                     Create Post
                                 </a>    
                             </div>
