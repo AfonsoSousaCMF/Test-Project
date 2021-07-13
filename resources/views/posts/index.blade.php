@@ -62,6 +62,13 @@
                                     <p class="card-text text-truncate desc">
                                         {{ $post->content }}
                                     </p>
+
+                                    <div class="post-tags mt-3">
+                                        <strong class="mr-2">Tags : </strong>
+                                        @foreach($post->tags as $tag)
+                                          <a href="#" class="badge badge-pill badge-info mr-1">{{$tag->name}}</a>
+                                        @endforeach
+                                    </div>
                     
                                     @auth
                                         @if (auth()->user()->isAdmin == 1)
@@ -114,6 +121,13 @@
                                     <p class="card-text text-truncate desc">
                                         {{ $post->content }}
                                     </p>
+
+                                    <div class="post-tags mt-3">
+                                        <strong class="mr-2">Tags : </strong>
+                                        @foreach($post->tags as $tag)
+                                            <a href="#" class="badge badge-pill badge-info mr-1">{{$tag->name}}</a>
+                                        @endforeach
+                                    </div>
                     
                                     @auth
                                         @if (auth()->user()->isAdmin == 1)

@@ -3,11 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\SoftDeletes; 
 use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * Get the user that owns the Post
@@ -20,6 +22,7 @@ class Post extends Model
         'image',
         'author_id',
     ];
+    protected $dates = ['deleted_at'];
 
     public function author()
     {

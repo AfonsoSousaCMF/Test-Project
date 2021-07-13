@@ -9,15 +9,6 @@
             {{ $post->title }}
         </h1>
     </div>
-    
-    {{-- Message Section --}}
-    @if (session('status'))
-      <div class="alert alert-success" role="alert">
-          {{ session('status') }}
-      </div>
-    @endif
-
-    @include('layouts.errors')
 
     <div class="row">
 
@@ -48,6 +39,15 @@
             {{ $post->content }}
           </p>
         </blockquote>
+
+        <hr>
+
+        <div class="post-tags my-3">
+          <strong class="mr-2">Tags : </strong>
+          @foreach($post->tags as $tag)
+            <a href="" class="badge badge-pill badge-info mr-1">{{$tag->name}}</a>
+          @endforeach
+        </div>
       </div>
     </div>
     <!-- /.row -->
