@@ -51,6 +51,6 @@ class ImageGalleryController extends Controller
     {
         ImageGallery::find($id)->delete();
         
-    	return back()->with(['status' => 'Image removed successfully.']);	
+    	return back()->with(['status' => 'Image Removed successfully.']);	
     }
 }

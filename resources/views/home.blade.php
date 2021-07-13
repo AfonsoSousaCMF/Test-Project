@@ -62,6 +62,13 @@
                                                 <p class="card-text">
                                                     {{ $post->content }}
                                                 </p>
+
+                                                <div class="post-tags my-3">
+                                                    <strong class="mr-2">Tags : </strong>
+                                                    @foreach($post->tags as $tag)
+                                                        <span class="badge badge-primary mr-1">{{$tag->name}}</span>
+                                                    @endforeach
+                                                </div>
                                                                 
                                                 @auth
                                                     @can('update', $post)

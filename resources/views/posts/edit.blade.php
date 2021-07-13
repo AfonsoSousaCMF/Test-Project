@@ -47,6 +47,22 @@
                <img class="img-fluid rounded" src="http://placehold.it/750x300" width="300"  alt="Card image cap">
                <br>
             @endif
+
+            <div class="form-row">
+               <div class="form-group col-md-12">
+                   <label for="inputTags">Tags</label>
+                   <div class="custom-file">
+                       <input 
+                           type="text" 
+                           value="{{$tags}}" 
+                           data-role="tagsinput" 
+                           class="form-control tags" 
+                           name="tags" 
+                           required
+                        >
+                   </div>
+               </div>
+           </div>
             
             <a href="{{ route('home') }}" class="btn btn-primary mt-3">Back to your Posts</a>
             <button type="submit" class="btn btn-success mt-3" onclick="return confirm('Are you sure you want to update the Post?');">Update Post</button>

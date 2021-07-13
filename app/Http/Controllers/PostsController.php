@@ -1,12 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Tag;
 
 class PostsController extends Controller
 {
@@ -63,14 +65,12 @@ class PostsController extends Controller
      */
     public function store(Request $request, Post $post)
     {
-
         $validated = request()->validate([
             'title' => ['required', 'min:1', 'max:255'],
             'content' => ['required', 'min:10', 'max:1000'],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tags' => 'required',
         ]);
-
-        $validated['author_id'] = auth()->id();
 
         if ($request->has('image')) {
             // Get image file
@@ -84,11 +84,37 @@ class PostsController extends Controller
             // Upload image
             $this->uploadOne($image, $folder, 'public', $name);
             // Set user profile image path in database to filePath
-            
-            $validated['image'] = $filePath;
+            $imagePath = $filePath;
         }
 
-        $post = Post::create($validated);
+        //$validated['author_id'] = Auth::user()->id;
+        //$post = Post::create($validated);
+        $data = [
+            'title' => $request->get('title'),
+            'content'  => $request->get('content'),
+            'image' => $imagePath,
+            'author_id' => Auth::user()->id,
+        ];
+        $post = Post::create($data);
+ 
+        if($post)
+        {        
+            $tagNames = explode(", ", $request->get('tags'));
+            $tagIds = [];
+            foreach($tagNames as $tagName)
+            {
+                //$post->tags()->create(['name'=>$tagName]);
+                //Or to take care of avoiding duplication of Tag
+                //you could substitute the above line as
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                if($tag)
+                {
+                    $tagIds[] = $tag->id;
+                }
+
+            }
+            $post->tags()->sync($tagIds);
+        }
         
         // redirect to the posts page
         return back()->with(['status' => 'Post successfully created!']);
@@ -116,8 +142,14 @@ class PostsController extends Controller
     public function edit($id)
     {
         $post = Post::findOrFail($id);
-        
-        return view('posts.edit', compact('post'));
+        // $tags = Tag::where('author_id', $post->id)->paginate(5);
+        $tagsList = $post->tags;
+        $tags = '';
+        foreach($tagsList as $index => $tag) {
+            $tags .= $index === 0 ? $tag->name : ', '.$tag->name;
+        }
+ 
+        return view('posts.edit', compact('post', 'tags'));
     }
 
     /**
@@ -136,6 +168,7 @@ class PostsController extends Controller
             'title' => ['required', 'min:1', 'max:255'],
             'content' => ['required', 'min:10', 'max:1000'],
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'tags' => 'required',
         ]);
 
         if ($request->has('image')) {
@@ -152,8 +185,27 @@ class PostsController extends Controller
             // Set image path in database to filePath
             $validated['image'] = $filePath;
         }
-        
+
+        if($post)
+        {        
+            $tagNames = explode(", ", $request->get('tags'));
+            $tagIds = [];
+            foreach($tagNames as $tagName)
+            {
+                //$post->tags()->create(['name'=>$tagName]);
+                //Or to take care of avoiding duplication of Tag
+                //you could substitute the above line as
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                if($tag)
+                {
+                    $tagIds[] = $tag->id;
+                }
+
+            }
+            $post->tags()->sync($tagIds);
+        }
         $post->update($validated);
+        // $post->tags()->sync($request->input('tags'));
         
         // redirect to the posts page
         return redirect('/home')->with(['status' => 'Post successfully updated!']);

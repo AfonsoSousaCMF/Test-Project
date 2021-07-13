@@ -43,6 +43,15 @@
                                 </div>
                             </div>
 
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <label for="inputTags">Tags</label>
+                                    <div class="custom-file">
+                                        <input type="text" data-role="tagsinput" class="form-control tags" name="tags" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <!-- Modal Footer -->
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

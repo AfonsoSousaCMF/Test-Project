@@ -14,10 +14,20 @@ class Post extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    protected $guarded = [];
+    protected $fillable = [
+        'title',
+        'content',
+        'image',
+        'author_id',
+    ];
 
     public function author()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 }
