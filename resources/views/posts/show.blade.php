@@ -45,7 +45,7 @@
         <div class="post-tags my-3">
           <strong class="mr-2">Tags : </strong>
           @foreach($post->tags as $tag)
-            <a href="" class="badge badge-pill badge-info mr-1">{{$tag->name}}</a>
+            <a href="#" class="badge badge-pill badge-info mr-1">{{$tag->name}}</a>
           @endforeach
         </div>
       </div>

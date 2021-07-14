@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-8">
-                                {{ __('Dashboard') }} 
+                                <h3>{{ __('Dashboard') }}</h3>
                             </div>
                             
                             <div class="col-md-4 mr-0">
@@ -81,7 +81,9 @@
                                                                 <form method="POST" action="{{ route('posts-delete', $post->id) }}">
                                                                     @method('DELETE')
                                                                     @csrf
-                                                                    <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">Delete</button>
+                                                                    <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">
+                                                                        <img src="{{ asset('icons/trash_bin_icon.png') }}" alt="trash_bin_icon" width="20" height="20">
+                                                                    </button>
                                                                 </form>
                                                             </div>
                                                         </div>

@@ -36,9 +36,9 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function admin()
+    public function trash()
     {
-        $posts = Post::onlyTrashed()->paginate(3); 
+        $posts = Post::onlyTrashed()->paginate(5);
 
         return view('trash', ['posts' => $posts]);
     }

@@ -96,3 +96,20 @@ body {
   outline: 0;
   opacity: 0.4;
 }
+
+.card-img,
+.card-img-top,
+.card-img-bottom {
+    //   flex-shrink: 0;
+    width: 100%;
+    z-index: 3;
+    transition: transform .2s; /* Animation */
+}
+
+.card-img:hover {
+    transform: scale(1.0); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.column-small {
+    width: 10%;
+}

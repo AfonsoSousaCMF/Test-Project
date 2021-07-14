@@ -10110,3 +10110,21 @@ body {
   outline: 0;
   opacity: 0.4;
 }
+
+.card-img,
+.card-img-top,
+.card-img-bottom {
+  width: 100%;
+  z-index: 3;
+  transition: transform 0.2s;
+  /* Animation */
+}
+
+.card-img:hover {
+  transform: scale(1);
+  /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
+}
+
+.column-small {
+  width: 10%;
+}

@@ -227,7 +227,6 @@ class PostsController extends Controller
     public function destroy($id, Post $post)
     {
         $post = Post::findOrFail($id);
-
         $this->authorize('update', $post);
 
         $post->delete();

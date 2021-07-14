@@ -83,7 +83,9 @@
                                                         <form method="POST" action="{{ route('posts-delete', $post->id) }}">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">Delete</button>
+                                                            <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">
+                                                                <img src="{{ asset('icons/trash_bin_icon.png') }}" alt="trash_bin_icon" width="20" height="20">
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </div>
@@ -142,7 +144,9 @@
                                                         <form method="POST" action="{{ route('posts-delete', $post->id) }}">
                                                             @method('DELETE')
                                                             @csrf
-                                                            <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">Delete</button>
+                                                            <button type="submit" class="btn btn-danger button is-link" onclick="return confirm('Are you sure you want to delete the Post ?');">
+                                                                <img src="{{ asset('icons/trash_bin_icon.png') }}" alt="trash_bin_icon" width="20" height="20">
+                                                            </button>
                                                         </form>
                                                     </div>
                                                 </div>

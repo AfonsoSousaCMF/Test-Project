@@ -16,18 +16,28 @@ use App\Http\Controllers\PostsController;
 |
 */
 
+// Post Routes (With no Auth)
 Route::get('/', 'PostsController@index')->name('posts');
 Route::get('/posts/{id}', 'PostsController@show')->name('posts-show');
+Route::get('/search', 'PostsController@search')->name('posts-search');
 
+// Gallery Routes
 Route::get('/image-gallery', 'ImageGalleryController@index')->name('gallery-index');
 Route::post('/image-gallery', 'ImageGalleryController@upload')->name('gallery-upload');
 Route::delete('/image-gallery/{id}', 'ImageGalleryController@destroy')->name('gallery-delete');
 
 Auth::routes();
 
-Route::get('/admin', 'HomeController@admin')->name('admin');
+// Tag Routes
+Route::get('/tags', 'TagsController@index')->name('tags');
+Route::delete('/tags/{id}', 'TagsController@destroy')->name('tags-delete');
+Route::post('/tags/restore/{id}', 'TagsController@restore')->name('tags-restore');
+
+// Posts Management Routes 
+Route::get('/trash', 'HomeController@trash')->name('trash');
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/search', 'PostsController@search')->name('posts-search');
+
+// Post Routes (With Auth)
 Route::get('/edit/{id}', 'PostsController@edit')->name('posts-edit');
 Route::post('/restore/{id}', 'PostsController@restore')->name('posts-restore');
 Route::post('/posts/store', 'PostsController@store')->name('posts-store');

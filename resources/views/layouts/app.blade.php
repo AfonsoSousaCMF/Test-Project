@@ -73,8 +73,12 @@
                                         Dashboard
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('admin') }}">
-                                        Managment
+                                    <a class="dropdown-item" href="{{ route('trash') }}">
+                                        Trash bin
+                                    </a>
+
+                                    <a class="dropdown-item" href="{{ route('tags') }}">
+                                       Tags Management
                                     </a>
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
