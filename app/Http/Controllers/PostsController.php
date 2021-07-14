@@ -47,12 +47,17 @@ class PostsController extends Controller
         $search = request('search');
 
         if($search != "") {
-            $posts = Post::where("title", 'LIKE', '%' .$search. '%')->paginate(3);
+            $posts = Post::where("title", 'LIKE', '%' .$search. '%')
+            ->paginate(3);
+            // $posts = Post::join('tags','post_tag.post_id', '=', 'posts.id')
+            // ->where('posts.title','LIKE', '%'.$search.'%')
+            // ->orWhere('tags.name', 'LIKE','%'.$search.'%')
+            // ->paginate(3);
             
             if(count($posts) > 0) {
-                return view('posts.index', [ 'posts' => $posts])->withDetails($posts)->withQuery($search);
+                return view('posts.index', [ 'posts' => $posts ])->withDetails($posts)->withQuery($search);
             }else{
-                return view('posts.index', [ 'posts' => $posts])->withDetails($posts)->withQuery($search);
+                return view('posts.index', [ 'posts' => $posts ])->withDetails($posts)->withQuery($search);
             }
         }
     }
@@ -85,6 +90,8 @@ class PostsController extends Controller
             $this->uploadOne($image, $folder, 'public', $name);
             // Set user profile image path in database to filePath
             $imagePath = $filePath;
+        }else {
+            $imagePath = null;
         }
 
         //$validated['author_id'] = Auth::user()->id;
@@ -99,7 +106,7 @@ class PostsController extends Controller
  
         if($post)
         {        
-            $tagNames = explode(", ", $request->get('tags'));
+            $tagNames = explode(', ', $request->get('tags'));
             $tagIds = [];
             foreach($tagNames as $tagName)
             {
@@ -217,14 +224,30 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Post $post)
     {
         $post = Post::findOrFail($id);
 
-        $this -> authorize('update', $post);
+        $this->authorize('update', $post);
 
         $post->delete();
         
-        return back()->with(['status' => 'Post successfully deleted!']);
+        return back()->with(['status' => 'Post successfully Deleted!']);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function restore($id, Post $post)
+    {
+        $post = Post::withTrashed()->findOrFail($id);
+        $this->authorize('update', $post);
+
+        $post->restore();
+        
+        return back()->with(['status' => 'Post successfully Restored!']);
     }
 }

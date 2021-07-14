@@ -29,4 +29,17 @@ class HomeController extends Controller
 
         return view('home', ['posts' => $posts])->with('You are logged in!');
     }
+
+    
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function admin()
+    {
+        $posts = Post::onlyTrashed()->paginate(3); 
+
+        return view('trash', ['posts' => $posts]);
+    }
 }

@@ -25,9 +25,11 @@ Route::delete('/image-gallery/{id}', 'ImageGalleryController@destroy')->name('ga
 
 Auth::routes();
 
+Route::get('/admin', 'HomeController@admin')->name('admin');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/search', 'PostsController@search')->name('posts-search');
 Route::get('/edit/{id}', 'PostsController@edit')->name('posts-edit');
+Route::post('/restore/{id}', 'PostsController@restore')->name('posts-restore');
 Route::post('/posts/store', 'PostsController@store')->name('posts-store');
 Route::patch('/posts/update/{id}', 'PostsController@update')->name('posts-update');
 Route::delete('/posts/delete/{id}', 'PostsController@destroy')->name('posts-delete');
