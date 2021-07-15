@@ -55,7 +55,9 @@
                                                 <td class="text-center table-secondary align-middle">
                                                     <form method="POST" action="{{ route('posts-restore', $post->id) }}">
                                                         @csrf
-                                                        <button type="submit" class="btn btn-warning button is-link" onclick="return confirm('Are you sure you want to Restore the Post ?');">Restore</button>
+                                                        <button type="submit" class="btn btn-warning button is-link" onclick="return confirm('Are you sure you want to Restore the Post ?');">
+                                                            <img src="{{ asset('icons/trash_bin_restore_icon.png') }}" alt="trash_bin_restore_icon" width="20" height="20">
+                                                        </button>
                                                     </form>
                                                 </td>
                                             @endcan

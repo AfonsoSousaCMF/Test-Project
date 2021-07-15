@@ -39,11 +39,11 @@
             <div id="carouselExampleControls" class="carousel slide carousel-fade mt-3 col-md-12" data-keyboard="true" data-ride="carousel">
                 <!-- Inner -->
                 <div class="carousel-inner">
-                    @if($images->count())
+                    @if($pictures->count())
                         <!-- Single item -->
                         <div class="carousel-item active">
                             <img
-                                src="/images/{{ $firstImage->image }}"
+                                src="{{ $firstImage->image }}"
                                 class="d-block w-100"
                                 alt="..."
                             />
@@ -60,22 +60,22 @@
                             </form> --}}
                         </div>
                         
-                        @foreach($images as $image)
+                        @foreach($pictures as $picture)
                             <!-- Single item -->
                             <div class="carousel-item">
                                 <img
-                                    src="/images/{{ $image->image }}"
+                                    src="{{ $picture->image }}"
                                     class="d-block w-100"
                                     alt="..."
                                 />
                                 <div class="carousel-caption d-none d-md-block">
-                                    <h5>{{ $image->title }}</h5>
-                                    <form action="{{ route('gallery-delete',$image->id) }}" method="POST">
+                                    <h5>{{ $picture->title }}</h5>
+                                    <form action="{{ route('gallery-delete',$picture->id) }}" method="POST">
                                         <input type="hidden" name="_method" value="delete">
                                         @method('DELETE')
                                         @csrf
                                         <button type="submit" class="close-icon btn btn-danger mx-auto" onclick="return confirm('Are you sure you want to delete the Image?');">
-                                            <span aria-hidden="true">×</span>
+                                            <img src="{{ asset('icons/trash_bin_icon.png') }}" alt="trash_bin_icon" width="20" height="20">
                                         </button>
                                     </form>
                                 </div>

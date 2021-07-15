@@ -126,7 +126,9 @@
                                                     <td class="text-center table-secondary align-middle my-auto column-small">
                                                         <form method="POST" action="{{ route('tags-restore', $tag->id) }}">
                                                             @csrf
-                                                            <button type="submit" class="btn btn-warning button is-link" onclick="return confirm('Are you sure you want to restore the Tag ?');">Restore</button>
+                                                            <button type="submit" class="btn btn-warning button is-link" onclick="return confirm('Are you sure you want to restore the Tag ?');">
+                                                                <img src="{{ asset('icons/trash_bin_restore_icon.png') }}" alt="trash_bin_restore_icon" width="20" height="20">
+                                                            </button>
                                                         </form>
                                                     </td>
                                                 @endif
