@@ -76,10 +76,11 @@
                                     <a class="dropdown-item" href="{{ route('trash') }}">
                                         Trash bin
                                     </a>
-
-                                    <a class="dropdown-item" href="{{ route('tags') }}">
-                                       Tags Management
-                                    </a>
+                                    @if (auth()->user()->isAdmin == 1)
+                                        <a class="dropdown-item" href="{{ route('tags') }}">
+                                        Tags Management
+                                        </a>
+                                    @endif
 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();

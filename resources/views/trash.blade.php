@@ -48,7 +48,7 @@
                                             {{ $post->author->name }}
                                         </td>
                                         <td class="text-center table-secondary align-middle">
-                                            {{ $post->deleted_at->format('d/m/Y') }}
+                                            {{ $post->deleted_at->format('H:m | D d/M/Y') }}
                                         </td>
                                         @auth
                                             @can('update', $post)

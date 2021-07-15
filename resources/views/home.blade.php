@@ -92,7 +92,7 @@
                                             </div>
                         
                                             <div class="card-footer text-muted">
-                                                Posted on {{ $post->created_at->format('d/m/Y') }} by
+                                                Posted on {{ $post->created_at->format('D d/M/Y') }} by
                                                 <strong>{{ $post->author->name }}</strong> 
                                             </div>
                                         </div>
