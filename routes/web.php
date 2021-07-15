@@ -29,9 +29,9 @@ Route::delete('/image-gallery/{id}', 'ImageGalleryController@destroy')->name('ga
 Auth::routes();
 
 // Tag Routes
-Route::get('/tags', 'TagsController@index')->name('tags');
-Route::delete('/tags/{id}', 'TagsController@destroy')->name('tags-delete');
-Route::post('/tags/restore/{id}', 'TagsController@restore')->name('tags-restore');
+Route::get('/tags', 'TagsController@index')->name('tags')->middleware('auth.admin');
+Route::delete('/tags/{id}', 'TagsController@destroy')->name('tags-delete')->middleware('auth.admin');
+Route::post('/tags/restore/{id}', 'TagsController@restore')->name('tags-restore')->middleware('auth.admin');
 
 // Posts Management Routes 
 Route::get('/trash', 'HomeController@trash')->name('trash');

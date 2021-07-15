@@ -78,7 +78,7 @@
                             <tbody>
                                 <tr>
                                     <td colspan="5" class="text-center table-secondary align-middle">
-                                       <h3>
+                                        <h3>
                                             You currently have no trashed Posts, Poggers!!!
                                         </h3>
                                     </td>
